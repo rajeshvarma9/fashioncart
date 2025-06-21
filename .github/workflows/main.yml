@@ -25,20 +25,16 @@ jobs:
         run: mvn clean verify
 
   deploy:
-    name: Deploy to Railway
-    needs: build           # CD only runs if CI succeeds
-    runs-on: ubuntu-latest
+  name: Deploy to Railway
+  needs: build
+  runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  steps:
+    - uses: actions/checkout@v3
 
-      - name: Install Railway CLI
-        run: npm install -g railway
+    - name: Deploy using Railway Action
+      uses: railwayapp/railway-action@v1.2.11
+      with:
+        railwayToken: ${{ secrets.RAILWAY_TOKEN }}
 
-      - name: Login to Railway
-        run: railway login --token ${{ secrets.RAILWAY_TOKEN }}
-
-      - name: Deploy to Railway
-        run: railway up
 
