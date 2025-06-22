@@ -33,12 +33,12 @@ jobs:
 
     env:
       RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      RAILWAY_PROJECT_TOKEN: ${{ secrets.RAILWAY_PROJECT_TOKEN }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Deploy via Railway CLI
-        run: railway up -- --project=${{ env.PROJECT_ID }}
+        run: railway up
 
