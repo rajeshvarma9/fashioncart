@@ -41,5 +41,5 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Deploy via Railway CLI
-        run: railway up --project=${{ env.PROJECT_ID }} --service=${{ env.SVC_ID }}
+        run: railway up -- --project=${{ env.PROJECT_ID }} --service=${{ env.SVC_ID }}
 
